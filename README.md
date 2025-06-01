@@ -18,11 +18,12 @@ Além do mais, c tbm precisa ir no site do osu e criar uma nova porrinha dessas 
 
 ![image](https://github.com/user-attachments/assets/107e8d04-ba24-42d7-9d51-c36b83019db1)
 
-e colocar o ID e senha no arquivo "app.txt". ID na primeira linha e senha na segunda:
+e colocar o ID e senha no arquivo "app.txt". ID na primeira linha e senha na segunda. Na terceira, coloque o seu Nick do jogo:
 
 ```python
 ID #o bglh numérico
 SENHA #o texto grande
+NOME #seu nick...
 ```
 
 <h2></h2>
