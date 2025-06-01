@@ -18,7 +18,7 @@ Além do mais, c tbm precisa ir no site do osu e criar uma nova porrinha dessas 
 
 ![image](https://github.com/user-attachments/assets/107e8d04-ba24-42d7-9d51-c36b83019db1)
 
-e colocar o ID e Senha no arquivo "app.txt":
+e colocar o ID e senha no arquivo "app.txt". ID na primeira linha e senha na segunda:
 
 ```python
 ID #o bglh numérico
