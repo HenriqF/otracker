@@ -85,7 +85,7 @@ async def getStuff(player):
     topplay = await api.user_scores(usere, type="best", include_fails=False, limit=1)
     topplay = topplay[0]
 
-    return(await api.user_scores(usere, type="recent", include_fails=False, limit=1000)) #recent -> 24horas || FAZER PRA NAO TER SQUE SENMROE SE=ERPLAY S DE NAO FALHA E ETCETERA,...
+    return(await api.user_scores(usere, type="recent", include_fails=True, limit=1000)) #recent -> 24horas || FAZER PRA NAO TER SQUE SENMROE SE=ERPLAY S DE NAO FALHA E ETCETERA,...
 
 def process(list):
     global dailyProgress 
@@ -145,6 +145,10 @@ while True:
         process(asyncio.run(getStuff(input("Player --> "))))
 
 
+def dates():
+    dates = [f for f in os.listdir(f"{name}/")]
+    for date in dates:
+        print(date[:-3])
 
 def listPlays():
     global plays
@@ -165,14 +169,32 @@ def graphDaily(date):
         all = 0
         maxi = float('-inf')
 
+
+        
+
+        sortedPlays = sorted(dailyScores, key=lambda x: x[1])[::-1]
+        
+        maxiLeng = 11+int(sortedPlays[0][1])
+        
         for play in dailyScores[1:]:
             header = "         |"
             current = str(play[1])+"ss "
 
             for i, letter in enumerate(current):
                 header = header[:i] + letter + header[i+1:]
+            buffer = header + "#"*int(play[1])
 
-            print(header, "#"*int(play[1]))
+            if len(buffer) >= maxiLeng:
+                print("ok")
+            else:
+                buffer = buffer + " "*int(maxiLeng-len(buffer))
+
+            
+            if buffer[-2] != "#":
+                buffer = buffer[:-2]+"." 
+
+
+            print(buffer)
             maxi = max(maxi, play[1])
             all+=play[1]
 
@@ -182,10 +204,13 @@ def graphDaily(date):
         print(err)
         print("You didnt log your stuff this date. (or you deleted it... you fool, you moron)")
 
-
+graphDaily(day)
 while True:
     msg = input("-->")
-    if msg == "playst":
+    
+    if msg == "daily":
         listPlays()
-    elif msg == "grapht":
+    if msg == "dates":
+        dates()
+    elif msg == "graph":
         graphDaily(day)
